@@ -35,21 +35,17 @@ class UserTest extends TestCase
             'name' => 'Gerard',
             'email' => 'looh@out.com',
             'password' => 'Luna0102',
-            'password_confirmation' => 'Luna0102'
-        ];
-
-        $luser = [
-            'email' => 'looh@out.com',
-            'password' => 'Luna0102',
+            'password_confirmation' => 'Luna0102',
             'remember_me' => true
         ];
+
 
         $this->json('POST', '/api/auth/signup', $user, ['Accept' => 'application/json'])
             ->assertStatus(201);
 
         $this->artisan('passport:install');
 
-        $this->json('post', '/api/auth/login', $luser, ['Accept' => 'application/json'])
+        $this->json('post', '/api/auth/login', $user, ['Accept' => 'application/json'])
             ->assertStatus(200);
     }
 
