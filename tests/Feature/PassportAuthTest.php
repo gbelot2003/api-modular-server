@@ -25,7 +25,6 @@ class PassportAuthTest extends TestCase
     /** @test */
     public function api_create_user()
     {
-
         $user = [
             'name' => 'Gerard',
             'email' => 'looh@out.com',
@@ -59,5 +58,17 @@ class PassportAuthTest extends TestCase
 
         $this->json('get', '/api/auth/user')
             ->assertStatus(200);
+    }
+
+    /** @test */
+    public function apt_logout_compleate()
+    {
+        Passport::actingAs(
+          factory(User::class)->create());
+
+        $this->json('get', '/api/auth/logout')
+            ->assertStatus(200)
+            ->assertJsonFragment(['message' => 'Successfully logged out']);
+
     }
 }
