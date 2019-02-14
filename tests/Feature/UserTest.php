@@ -54,4 +54,14 @@ class UserTest extends TestCase
             ->assertStatus(200);
     }
 
+
+    /** @test */
+    public function api_return_user()
+    {
+        Passport::actingAs(
+            factory(User::class)->create());
+
+        $this->json('get', '/api/auth/user')
+            ->assertStatus(200);
+    }
 }
