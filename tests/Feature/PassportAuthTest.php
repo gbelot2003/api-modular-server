@@ -3,13 +3,12 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Support\Facades\App;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class UserTest extends TestCase
+class PassportAuthTest extends TestCase
 {
 
     use WithFaker, RefreshDatabase;
@@ -21,7 +20,6 @@ class UserTest extends TestCase
         parent::setUp();
         $this->user = factory(User::class)->create();
         $this->artisan('passport:install');
-
     }
 
     /** @test */
@@ -37,8 +35,6 @@ class UserTest extends TestCase
 
         $this->json('POST', '/api/auth/signup', $user, ['Accept' => 'application/json'])
             ->assertStatus(201);
-
-
     }
 
     /** @test */

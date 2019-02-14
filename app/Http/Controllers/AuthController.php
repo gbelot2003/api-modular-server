@@ -37,11 +37,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        /*$request->validate([
+        $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
             'remember_me' => 'boolean'
-        ]);*/
+        ]);
 
         $credentials = request(['email', 'password']);
 
